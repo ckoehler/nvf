@@ -364,7 +364,7 @@ installation sections of the manual. You may find all available options in the
 interface. The below chapters describe several of the options exposed in nvf for
 your convenience. You might also be interested in the <a class="link" href="index.xhtml#ch-helpful-tips" title="Helpful Tips" >helpful tips section</a> for
 more advanced or unusual configuration options supported by nvf.</p><p>Note that this section does not cover module <span class="emphasis"><em>options</em></span>. For an overview of all
-module options provided by nvf, please visit the <a class="link" href="/options.html"  target="_top">appendix</a></p><div class="toc"> <p><strong>Table of Contents</strong></p> <dl class="toc">  <dt> <span class="chapter">  <a href="index.xhtml#ch-custom-package">Custom Neovim Package</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-custom-plugins">Custom Plugins</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-overriding-plugins">Overriding plugins</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-languages">Language Support</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-using-dags">Using DAGs</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-dag-entries">DAG entries in nvf</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-autocmds-augroups">Autocommands and Autogroups</a> </span></dt> </dl></div></div><div class="chapter"> <div class="titlepage">  <div>   <div>    <h2 id="ch-custom-package" class="title" >Custom Neovim Package   </h2>  </div> </div></div><p>As of v0.5, you may now specify the Neovim package that will be wrapped with
+module options provided by nvf, please visit the <a class="link" href="/nvf/options.html"  target="_top">appendix</a></p><div class="toc"> <p><strong>Table of Contents</strong></p> <dl class="toc">  <dt> <span class="chapter">  <a href="index.xhtml#ch-custom-package">Custom Neovim Package</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-custom-plugins">Custom Plugins</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-overriding-plugins">Overriding plugins</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-languages">Language Support</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-using-dags">Using DAGs</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-dag-entries">DAG entries in nvf</a> </span></dt><dt> <span class="chapter">  <a href="index.xhtml#ch-autocmds-augroups">Autocommands and Autogroups</a> </span></dt> </dl></div></div><div class="chapter"> <div class="titlepage">  <div>   <div>    <h2 id="ch-custom-package" class="title" >Custom Neovim Package   </h2>  </div> </div></div><p>As of v0.5, you may now specify the Neovim package that will be wrapped with
 your configuration. This is done with the <a class="xref" href="options.html#opt-vim.package"  ><code class="option">vim.package</code></a> option.</p><pre><code class="programlisting nix">{inputs, pkgs, ...}: {
   # using the neovim-nightly overlay
   vim.package = inputs.neovim-overlay.packages.${pkgs.stdenv.system}.neovim;
@@ -808,7 +808,7 @@ manner.</p><pre><code class="programlisting nix">{
   # flake.nix. For the sake of the argument, we will assume that the Neovim lua
   # configuration is in a nvim/ directory relative to flake.nix.
   vim = {
-    additionalRuntimeDirectories = [
+    additionalRuntimePaths = [
       # This will be added to Neovim&#x27;s runtime paths. Conceptually, this behaves
       # very similarly to ~/.config/nvim but you may not place a top-level
       # init.lua to be able to require it directly.
@@ -821,7 +821,7 @@ realised after your flake gets copied to the Nix store, to Neovim’s runtime
 directory. You may now create a <code class="literal">lua/myconfig</code> directory within this nvim
 directory, and call it with <a class="xref" href="options.html#opt-vim.luaConfigRC"  ><code class="option">vim.luaConfigRC</code></a>.</p><pre><code class="programlisting nix">{pkgs, ...}: {
   vim = {
-    additionalRuntimeDirectories = [
+    additionalRuntimePaths = [
       # You can list more than one file here.
       ./nvim-custom-1
 
